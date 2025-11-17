@@ -6,7 +6,7 @@ A beautifully designed **Todo App** built with **HTML, CSS, and JavaScript**, fe
 
 ## 🚀 Live Demo
 
-- 🔗 **Live Website:** []()
+- 🔗 **Live Website:** [https://dileep-kumawat.github.io/Todo-app-using-html-css-and-js/](https://dileep-kumawat.github.io/Todo-app-using-html-css-and-js/)
 - 🎥 **Demo Video:** [click to watch](./demo.mp4)
 
 ---
@@ -55,7 +55,7 @@ A beautifully designed **Todo App** built with **HTML, CSS, and JavaScript**, fe
 Clone the repository:
 
 ```bash
-git clone 
+git clone https://github.com/Dileep-kumawat/Todo-app-using-html-css-and-js.git
 ```
 
 Open the project folder:
