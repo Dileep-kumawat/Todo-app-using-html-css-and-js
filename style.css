@@ -1,0 +1,309 @@
+:root {
+    --bg1: #0f172a;
+    /* deep midnight */
+    --bg2: #08203a;
+    /* teal-ish deep */
+    --card: rgba(255, 255, 255, 0.04);
+    --muted: #a6b0bf;
+    --accent: #6ee7b7;
+    /* mint accent */
+    --accent-2: #60a5fa;
+    /* blue accent */
+    --danger: #ff6b6b;
+    --glass: rgba(255, 255, 255, 0.06);
+    --glass-2: rgba(255, 255, 255, 0.03);
+    --radius: 14px;
+    --shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+    --gap: 14px;
+    --max-w: 520px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color-scheme: dark;
+}
+
+/* Full-page gradient background */
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(96, 165, 250, 0.06), transparent 8%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #e6eef8;
+}
+
+/* Center content */
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+}
+
+/* Card */
+main>h1 {
+    display: none
+}
+
+/* keep semantic H1 but hide default - we'll show styled title inside card */
+#todo-card {
+    width: 100%;
+    max-width: var(--max-w);
+    border-radius: var(--radius);
+    padding: 28px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    position: relative;
+}
+
+/* Add a decorative header inside the card */
+#todo-card .title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 14px 0;
+}
+
+.logo-dot {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #04263a;
+    box-shadow: 0 6px 20px rgba(32, 160, 255, 0.12), inset 0 -6px 18px rgba(255, 255, 255, 0.06);
+}
+
+#todo-card h2 {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+#todo-card p.lead {
+    margin: 6px 0 18px 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Input row */
+#container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#addInp {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: var(--glass);
+    color: inherit;
+    outline: none;
+    font-size: 15px;
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    box-shadow: 0 2px 10px rgba(2, 6, 23, 0.35);
+}
+
+#addInp::placeholder {
+    color: #9fb0c8;
+}
+
+/* Focus state */
+#addInp:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45), 0 0 0 4px rgba(96, 165, 250, 0.06);
+    border-color: rgba(96, 165, 250, 0.28);
+}
+
+/* Button */
+#addBtn {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #052032;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(96, 165, 250, 0.08);
+    transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+
+#addBtn:active {
+    transform: translateY(1px) scale(.995);
+}
+
+#addBtn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+/* Todo list */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--glass-2), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    box-shadow: 0 6px 20px rgba(3, 8, 23, 0.45);
+    font-size: 15px;
+}
+
+ul li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(2, 6, 23, 0.55);
+}
+
+/* "No todo yet" style */
+ul li:empty,
+ul li:contains("No Todo yet...") {
+    text-align: center;
+    opacity: .8;
+    color: var(--muted);
+}
+
+/* Left text */
+ul li span {
+    display: inline-block;
+    min-width: 0;
+    flex: 1 1 auto;
+    word-break: break-word;
+    cursor: pointer;
+    padding-right: 8px;
+}
+
+/* Strike-through (provided by your script using .over) */
+.over {
+    text-decoration: line-through;
+    opacity: 0.7;
+    color: #9eb1c6;
+}
+
+/* Buttons group */
+ul li>div {
+    display: flex;
+    gap: 8px;
+    margin-left: 12px;
+    flex-shrink: 0;
+}
+
+ul button.editTodo,
+ul button.delTodo {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    background: linear-gradient(90deg, rgba(255, 107, 107, 0.06), rgba(255, 255, 255, 0.02));
+    color: #e6f7ff;
+    transition: all .12s ease;
+    box-shadow: none;
+}
+
+ul button.editTodo:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(90deg, rgba(96, 165, 250, 0.06), rgba(110, 231, 183, 0.04));
+}
+
+ul button.editTodo[disabled] {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--muted);
+}
+
+ul button.editTodo[disabled]:hover {
+    transform: none;
+    cursor: context-menu;
+}
+
+ul button.delTodo {
+    background: linear-gradient(135deg, #ff6b6b, #e63946);
+    color: #ffdede;
+}
+
+ul button.delTodo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(255, 107, 107, 0.06);
+}
+
+/* When edit input replaces span */
+ul li input {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.02);
+    color: inherit;
+    font-size: 15px;
+    min-width: 160px;
+}
+
+/* Responsive */
+@media (max-width:520px) {
+    #todo-card {
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    #addInp {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    #addBtn {
+        padding: 9px 12px;
+        font-size: 14px;
+    }
+
+    ul li {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .logo-dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+}
+
+/* small decorative corner */
+#todo-card::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle at 30% 30%, rgba(96, 165, 250, 0.06), transparent 20%),
+        radial-gradient(circle at 70% 70%, rgba(110, 231, 183, 0.04), transparent 18%);
+    transform: rotate(25deg);
+    pointer-events: none;
+    filter: blur(12px);
+    opacity: 0.9;
+}
